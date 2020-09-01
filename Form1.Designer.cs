@@ -82,6 +82,7 @@
             this.labelTime.TabIndex = 1;
             this.labelTime.Text = "00:00:00";
             this.labelTime.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.labelTime.Click += new System.EventHandler(this.labelTime_Click);
             // 
             // Form1
             // 

@@ -213,6 +213,11 @@ namespace FundMonitor
             }
         }
 
+        private void labelTime_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+        }
+
         private void Form1_MouseDown(object sender, MouseEventArgs e)
         {
             if (e.Button == System.Windows.Forms.MouseButtons.Left)
