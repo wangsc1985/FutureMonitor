@@ -29,10 +29,12 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.labelPrice = new System.Windows.Forms.Label();
             this.labelFundIncrease = new System.Windows.Forms.Label();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.labelTime = new System.Windows.Forms.Label();
+            this.notifyIcon1 = new System.Windows.Forms.NotifyIcon(this.components);
             this.SuspendLayout();
             // 
             // labelPrice
@@ -46,13 +48,14 @@
             this.labelPrice.TabIndex = 0;
             this.labelPrice.Text = "0";
             this.labelPrice.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.labelPrice.Click += new System.EventHandler(this.labelPrice_Click);
             // 
             // labelFundIncrease
             // 
             this.labelFundIncrease.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.labelFundIncrease.BackColor = System.Drawing.Color.Transparent;
-            this.labelFundIncrease.Font = new System.Drawing.Font("方正粗黑宋简体", 26.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.labelFundIncrease.Font = new System.Drawing.Font("Microsoft Sans Serif", 26.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.labelFundIncrease.ForeColor = System.Drawing.Color.White;
             this.labelFundIncrease.Location = new System.Drawing.Point(12, 9);
             this.labelFundIncrease.Name = "labelFundIncrease";
@@ -84,6 +87,13 @@
             this.labelTime.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.labelTime.Click += new System.EventHandler(this.labelTime_Click);
             // 
+            // notifyIcon1
+            // 
+            this.notifyIcon1.Icon = ((System.Drawing.Icon)(resources.GetObject("notifyIcon1.Icon")));
+            this.notifyIcon1.Text = "点击还原";
+            this.notifyIcon1.Visible = true;
+            this.notifyIcon1.Click += new System.EventHandler(this.notifyIcon1_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -113,6 +123,7 @@
         private System.Windows.Forms.Label labelFundIncrease;
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.Label labelTime;
+        private System.Windows.Forms.NotifyIcon notifyIcon1;
     }
 }
 

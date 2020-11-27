@@ -1,4 +1,5 @@
 ﻿using FundMonitor.helper;
+using FutureMonitor;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -23,6 +24,7 @@ namespace FundMonitor
         private double preClose = 0, cost = 0;
         private int accuracy = 0;
         private string name;
+        private int isLong = 1;
 
 
         private void setValue(string key, Object value)
@@ -77,6 +79,11 @@ namespace FundMonitor
             {
                 this.cost = Convert.ToDouble(cost);
             }
+            var isLong = this.getValue("isLong");
+            if (isLong != null)
+            {
+                this.isLong = Convert.ToInt32(isLong);
+            }
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -109,17 +116,18 @@ namespace FundMonitor
                 double open = Convert.ToDouble(futuresInfo[2]);
                 double increase = close - yestodayClose;
                 string fm = "F" + this.accuracy;
+                double profit = isLong * (close - cost);
 
-                this.labelPrice.Text = string.Format("{0:"+fm+"}", close);
+                this.labelPrice.Text = string.Format("{0:" + fm + "}", close);
                 //this.labelPriceIncrease.Text = string.Format("{0:" + fm + "}", increase);
-                this.labelTime.Text = futuresInfo[1].Substring(0,2)+":"+ futuresInfo[1].Substring(2, 2)+":"+ futuresInfo[1].Substring(4, 2);
-                this.labelFundIncrease.Text = string.Format("{0:"+fm+"}", close-cost);
+                this.labelTime.Text = futuresInfo[1].Substring(0, 2) + ":" + futuresInfo[1].Substring(2, 2) + ":" + futuresInfo[1].Substring(4, 2);
+                this.labelFundIncrease.Text = string.Format("{0:" + fm + "}", profit);
 
-                if (close > cost)
+                if (profit > 0)
                 {
                     labelFundIncrease.ForeColor = Color.Red;
                 }
-                else if (close == cost)
+                else if (profit == 0)
                 {
                     labelFundIncrease.ForeColor = Color.White;
                 }
@@ -141,6 +149,7 @@ namespace FundMonitor
                 {
                     labelPrice.ForeColor = Color.Cyan;
                 }
+                this.TopMost = true;
             }
             catch (Exception)
             {
@@ -216,6 +225,26 @@ namespace FundMonitor
         private void labelTime_Click(object sender, EventArgs e)
         {
             this.Hide();
+        }
+
+        private void notifyIcon1_Click(object sender, EventArgs e)
+        {
+            this.Show();
+        }
+
+        private void labelPrice_Click(object sender, EventArgs e)
+        {
+            timer1.Stop();
+            Form2 form = new Form2();
+            var result = form.ShowDialog();
+            if(result == DialogResult.OK)
+            {
+                name = form.name;
+                cost = form.cost;
+                accuracy = form.accuracy;
+                isLong = form.isLong;
+            }
+            timer1.Start();
         }
 
         private void Form1_MouseDown(object sender, MouseEventArgs e)
