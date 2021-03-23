@@ -118,6 +118,15 @@ namespace FundMonitor
                 string fm = "F" + this.accuracy;
                 double profit = isLong * (close - cost);
 
+                //if (Math.Abs(profit) > 2000)
+                //{
+                //    labelFundIncrease.ForeColor = Color.DarkGray;
+                //    labelPrice.ForeColor = Color.DarkGray;
+                //    labelTime.ForeColor = Color.DarkGray;
+                //    return;
+                //}
+                //labelTime.ForeColor = Color.White;
+
                 this.labelPrice.Text = string.Format("{0:" + fm + "}", close);
                 //this.labelPriceIncrease.Text = string.Format("{0:" + fm + "}", increase);
                 this.labelTime.Text = futuresInfo[1].Substring(0, 2) + ":" + futuresInfo[1].Substring(2, 2) + ":" + futuresInfo[1].Substring(4, 2);
